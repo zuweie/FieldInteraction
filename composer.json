@@ -1,0 +1,21 @@
+{
+    "name": "zuweie/laravel-admin-interaction",
+    "description": "make the laravel-admin field has a interaction",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zuweie",
+            "email": "jojoe.wei@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+    	"encore/laravel-admin": "^1.5"
+    },
+    "autoload": {
+    	"psr-4": {
+    		"Field\\Interaction\\":"src/"
+    	}
+    }
+}
