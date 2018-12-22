@@ -1,5 +1,5 @@
 {
-    "name": "zuweie/laravel-admin-interaction",
+    "name": "zuweie/FieldInteraction",
     "description": "make the laravel-admin field has a interaction",
     "type": "library",
     "license": "MIT",
