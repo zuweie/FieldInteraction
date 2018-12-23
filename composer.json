@@ -1,6 +1,7 @@
 {
     "name": "zuweie/field-interaction",
     "description": "make the laravel-admin field has a interaction",
+    "keywords":["laravel admin", "form field", "interaction"],
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -9,8 +10,6 @@
             "email": "jojoe.wei@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
-    "version": "1.0.0",
     "require": {
     	"encore/laravel-admin": "^1.5"
     },
