@@ -9,7 +9,8 @@
             "email": "jojoe.wei@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
+    "version": "1.0.0"
     "require": {
     	"encore/laravel-admin": "^1.5"
     },
