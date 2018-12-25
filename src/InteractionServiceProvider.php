@@ -4,13 +4,15 @@ namespace Field\Interaction;
 
 use Illuminate\Support\ServiceProvider;
 
-class FieldInteractionProvider extends ServiceProvider
+class InteractionServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
      *
      * @return void
      */
+	
+	
     public function boot()
     {
         //
