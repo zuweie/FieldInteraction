@@ -3,7 +3,7 @@
  - laravel是一个很好的框架，使用起来很方便。而其中的**laravel-admin**更是方便我们对一个完整的Web平台搭建。然后laravel-admin有个不足，让本人使用十分不爽，这个是laravel-admin各个**Field**之间没有互动的功能，或者说是没有互动的接口。这让本人想实现一些控件间互动的逻辑的时候，都非得重新自定义一些控件组，让几个控件集合成一个新的控件来实现.
  - FieldInteraction 提供一个接口，用于注入javascript，使得各个Field之间有互动的可能。
  ### 安装
- - composer require zuweie/field-action 
+ - composer require zuweie/field-interaction 
  - 在laravel中的 config/app 的provider加入 Field\Interaction\InteractionServiceProvider 如下：
  ```
    'providers' => [
@@ -16,11 +16,11 @@
       Field\Interaction\InteractionServiceProvider::class,
     ]
  ```
- - 在laravel根目录下执行：
+ - 执行以下命令：
  ```
    php artisan vedor:publish --provider="Field\Interaction\InteractionServiceProvider"
  ```
- 在public/vendor/interaction/发现有FieldHub.js即安装成功。若不成功，可手动复制vendor/zuweie/field-interaction/resource/js/FieldHub.js 到public/vendor/interaction/下。
+在public/vendor/interaction/发现有FieldHub.js即安装成功。若不成功，可手动复制vendor/zuweie/field-interaction/resource/js/FieldHub.js 到public/vendor/interaction/下。
  
  ### 使用
  - 在app/Admin/bootstrap.php文件中注册 **scriptinjecter**
@@ -64,7 +64,7 @@
         // new -个接收并处理事件的Script对象。
         $subscribeScript = $this->createSubscribeScript($form, function($builder){
            // 添加事件响应函数
-           $builder->subscribe('column_listen_to', 'event_of_column_will_triggered', function($event){
+           $builder->subscribe('column_listen_to', 'event_will_triggered', function($event){
            // 这里填写处理事件的javascript函数。
                return <<< EOT
                
@@ -84,3 +84,12 @@
         
     }
 ```
+
+### 说明
+- $createTriggerScript 返回一个针对原来laravel-admin已有的控件的事件触发脚本。但是很遗憾有一些控件，我是怎么也找不到他们的触发事件，以下给出laravel-admin中的支持触发事件的控件，以及他们的触发的事件
+
+控件类|能否触发|触发事件|说明
+--|:--|:--|:--
+Text|是|input / change|无
+
+
