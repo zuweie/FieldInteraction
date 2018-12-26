@@ -3,7 +3,7 @@
  - laravel是一个很好的框架，使用起来很方便。而其中的**laravel-admin**更是方便我们对一个完整的Web平台搭建。然后laravel-admin有个不足，让本人使用十分不爽，这个是laravel-admin各个**Field**之间没有互动的功能，或者说是没有互动的接口。这让本人想实现一些控件间互动的逻辑的时候，都非得重新自定义一些控件组，让几个控件集合成一个新的控件来实现.
  - FieldInteraction 提供一个接口，用于注入javascript，使得各个Field之间有互动的可能。
  ### 安装
- - composer require zuweie/field-action 1.0.*
+ - composer require zuweie/field-action 
  - 在laravel中的 config/app 的provider加入 Field\Interaction\InteractionServiceProvider 如下：
  ```
    'providers' => [
@@ -49,8 +49,11 @@
         // 一些控件的定义
         ...
         ...
+        
+        // 在定义完控件后。。。
         // new 一个触发事件的Script对象。
         $triggerScript = $this->createTriggerScript($form);
+        
         // new -个接收并处理事件的Script对象。
         $subscribeScript = $this->createSubscribeScript($form, function($builder){
            // 添加事件响应函数
@@ -68,5 +71,9 @@
      EOT;
            });
         });
+        
+        // 最后把 $triggerScript 和 $subscribeScript 注入到Form中去。
+        $form->scriptinjecter('name_no_care', $triggerScript, $subscribeScript);
+        
     }
 ```
