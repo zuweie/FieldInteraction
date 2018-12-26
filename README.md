@@ -20,10 +20,10 @@
  ```
    php artisan vedor:publish --provider="Field\Interaction\InteractionServiceProvider"
  ```
- 在public/vendor/interaction/发现有FieldHub.js即安装成功。若成功，可以手动复制vendor/zuweie/field-interaction/resource/js/FieldHub.js 到public/vendor/interaction/下。
+ 在public/vendor/interaction/发现有FieldHub.js即安装成功。若不成功，可手动复制vendor/zuweie/field-interaction/resource/js/FieldHub.js 到public/vendor/interaction/下。
  
  ### 使用
- - 在app/Admin/bootstrap.php文件中注册script注入器。
+ - 在app/Admin/bootstrap.php文件中注册 **scriptinjecter**
  ```
     //.... 一些你自己的代码 ....
     // 这个是例子，和本项目无关
@@ -38,8 +38,15 @@
  ```
    use Field\Interaction\FieldTriggerTrait;
    use Field\Interaction\FieldSubscriberTrait;
+   
+   class UserController extends Controller 
+   {
+      use FieldTriggerTrait, FieldSubscriberTrait, ......;
+      .....
+      ....
+      ....
 ```
-- 在生成Form的函数中：
+- 在Form的函数中：
 ```
     // UserController 中的 form 函数。
     protected function form(){
