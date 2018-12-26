@@ -41,7 +41,7 @@ trait FieldTriggerTrait {
 	
 	use FieldformatTrait;
 	
-	public  function createTriggerScript ($form, $scriptbuilder=null, $debug=true ) {
+	public  function createTriggerScript ($form,  $scriptbuilder=null, $debug=true ) {
 		return new TriggerScript($form, $scriptbuilder? $scriptbuilder : $this->createTriggerScriptBuilder($debug));
 	}
 		
@@ -56,7 +56,7 @@ trait FieldTriggerTrait {
 			$("input[name='{$field->column()}']").on('input',function(){
                    var text = $(this).val();
                    
-                    ({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'input')}', text));
+                    ({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'input')}', text));
                    
                    
                    FieldHub.publish('{$this->formatFieldEvent($field, 'input')}', text);
@@ -65,7 +65,7 @@ trait FieldTriggerTrait {
             $("input[name='{$field->column()}']").on('change',function(){
                    var text = $(this).val();
                    
-                    ({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'change')}', text));
+                    ({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'change')}', text));
                    
                    
                    FieldHub.publish('{$this->formatFieldEvent($field, 'change')}', text);
@@ -81,7 +81,7 @@ EOT;
 			$("select[name='{$field->column()}']").on('select2:select', function(e){
 					var data = e.params.data;
 					
-					({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'select')}', data));
+					({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'select')}', data));
 					
     				FieldHub.publish('{$this->formatFieldEvent($field, 'select')}', data);
 			});
@@ -89,7 +89,7 @@ EOT;
     		$("select[name='{$field->column()}']").on('select2:unselect', function(e){
 					var data = e.params.data;
 					
-					({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'unselect')}', data));
+					({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'unselect')}', data));
 					
     				FieldHub.publish('{$this->formatFieldEvent($field, 'unselect')}', data);
 			});
@@ -103,7 +103,7 @@ EOT;
 			
 			$("input[name='{$field->column()}']").on('ifChecked', function(event){
 					var text = $(this).val();
-					({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'checked')}', text));
+					({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'checked')}', text));
 					FieldHub.publish('{$this->formatFieldEvent($field, 'checked')}', text);
 			});
 			
@@ -119,7 +119,7 @@ EOT;
 					$("input[name='{$field->column()}[]']:checked").each(function(){
 						checkedvals.push($(this).val());
 					});
-					({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'checked')}', checkedvals));
+					({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'checked')}', checkedvals));
 					FieldHub.publish('{$this->formatFieldEvent($field, 'checked')}', checkedvals);
 			});
 			$("input:checkbox[name='{$field->column()}[]']").on('ifUnchecked', function(event){
@@ -128,7 +128,7 @@ EOT;
 					$("input[name='{$field->column()}[]']:checked").each(function(){
 						checkedvals.push($(this).val());
 					});
-					({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'unchecked')}', checkedvals));
+					({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'unchecked')}', checkedvals));
 					FieldHub.publish('{$this->formatFieldEvent($field, 'unchecked')}', checkedvals);
 			});
 		
@@ -141,13 +141,13 @@ EOT;
 			
 			$("textarea[name='{$field->column()}']").on('change', function(){
 					var text = $(this).val();
-					({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'change')}', text));
+					({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'change')}', text));
 					FieldHub.publish('{$this->formatFieldEvent($field, 'change')}', text);
 			});
 			
 			$("textarea[name='{$field->column()}']").on('input', function(){
 					var text = $(this).val();
-					({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'input')}', text));
+					({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'input')}', text));
 					FieldHub.publish('{$this->formatFieldEvent($field, 'input')}', text);
 			});
 			
@@ -160,13 +160,13 @@ EOT;
 			
 			$("input[name='{$field->column()}']").on('change', function(){
 					var text = $(this).val();
-					({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'change')}', text));
+					({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'change')}', text));
 					FieldHub.publish('{$this->formatFieldEvent($field, 'change')}', text);
 			});
 			
 			$("input[name='{$field->column()}']").on('input', function(){
 					var text = $(this).val();
-					({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'input')}', text));
+					({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'input')}', text));
 					FieldHub.publish('{$this->formatFieldEvent($field, 'input')}', text);
 			});
 					
@@ -180,13 +180,13 @@ EOT;
 			
 			$("input[name='{$field->column()}']").on('change', function(e){
 					var text = $(this).val();
-					({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'change')}', text));
+					({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'change')}', text));
 					FieldHub.publish('{$this->formatFieldEvent($field, 'change')}', text);
 			});
 			
 			$("input[name='{$field->column()}']").on('input', function(e){
 					var text = $(this).val();
-					({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'input')}', text));
+					({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'input')}', text));
 					FieldHub.publish('{$this->formatFieldEvent($field, 'input')}', text);
 			});
 			
@@ -201,7 +201,7 @@ EOT;
 				$("input[name='{$field->column()}']").parent().on('changeColor', function(e){
 						
 						var color = e.color;
-						({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'changecolor')}', text));
+						({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'changecolor')}', text));
 						FieldHub.publish('{$this->formatFieldEvent($field, 'changecolor')}',color);
 				});
 EOT;
@@ -213,13 +213,13 @@ EOT;
 				
 				$("input[name='{$field->column()}']").on('change', function(e){
 						var text = $(this).val();
-						({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'change')}', text));
+						({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'change')}', text));
 						FieldHub.publish('{$this->formatFieldEvent($field, 'change')}',text);		
 				});
 				
 				$("input[name='{$field->column()}']").on('input', function(e){
 						var text = $(this).val();
-						({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'input')}', text));
+						({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'input')}', text));
 						FieldHub.publish('{$this->formatFieldEvent($field, 'input')}',text);		
 				});
 				
@@ -232,13 +232,13 @@ EOT;
 			
 				$("input[name='{$field->column()}']").on('change', function(e){
 						var text = $(this).val();
-						({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'change')}', text));
+						({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'change')}', text));
 						FieldHub.publish('{$this->formatFieldEvent($field, 'change')}',text);		
 				});
 				
 				$("input[name='{$field->column()}']").on('input', function(e){
 						var text = $(this).val();
-						({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'input')}', text));
+						({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'input')}', text));
 						FieldHub.publish('{$this->formatFieldEvent($field, 'input')}',text);		
 				});
 			
@@ -260,13 +260,13 @@ EOT;
 				
 				$("input[name='{$field->column()}']").on('change', function(e){
 						 var files = $(this).prop('files');
-						 ({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'change')}', files));
+						 ({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'change')}', files));
 						 FieldHub.publish('{$this->formatFieldEvent($field, 'change')}', files);
 				});
 						
 				$("input[name='{$field->column()}']").on('filecleared', function(e){
 						var files = $(this).prop('files');
-						 ({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'filecleared')}', files));
+						 ({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'filecleared')}', files));
 						 FieldHub.publish('{$this->formatFieldEvent($field, 'filecleared')}', files);
 				});		
 				// 多做几个事件
@@ -280,13 +280,13 @@ EOT;
 				
 				$("input[name='{$field->column()}']").on('change', function(e){
 						 var files = $(this).prop('files');
-						 ({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'change')}', files));
+						 ({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'change')}', files));
 						 FieldHub.publish('{$this->formatFieldEvent($field, 'change')}', files);
 				});
 						
 				$("input[name='{$field->column()}']").on('filecleared', function(e){
 						var files = $(this).prop('files');
-						 ({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'filecleared')}', files));
+						 ({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'filecleared')}', files));
 						 FieldHub.publish('{$this->formatFieldEvent($field, 'filecleared')}', files);
 				});	
 				
@@ -320,13 +320,13 @@ EOT;
 				
 				$("input[name='{$field->column()}']").on('input', function(e){
 						var text = $(this).val();
-						 ({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'input')}', text));
+						 ({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'input')}', text));
 						 FieldHub.publish('{$this->formatFieldEvent($field, 'input')}', text);
 				});
 				
 				$("input[name='{$field->column()}']").on('change', function(e){
 						var text = $(this).val();
-						 ({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'change')}', text));
+						 ({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'change')}', text));
 						 FieldHub.publish('{$this->formatFieldEvent($field, 'change')}', text);
 				});
 				
@@ -340,7 +340,7 @@ EOT;
 				
 				$("input[name='{$field->column()}']").prev().children().children('input.la_checkbox').on('switchChange.bootstrapSwitch', function(e, data){
 						var text = $("input[name='{$field->column()}']").val();
-						({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'switchchange')}', text));
+						({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'switchchange')}', text));
 						FieldHub.publish('{$this->formatFieldEvent($field, 'switchchange')}', text);
 				});
 				
@@ -353,13 +353,13 @@ EOT;
 				
 				$("select[name='{$field->column()}[]']").on('select2:select', function(e){
 					var data = e.params.data;
-					({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'select')}', data));
+					({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'select')}', data));
     				FieldHub.publish('{$this->formatFieldEvent($field, 'select')}', data);
 				});
     				
 				$("select[name='{$field->column()}[]']").on('select2:unselect', function(e){
 					var data = e.params.data;
-					({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'select')}', data));
+					({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'select')}', data));
     				FieldHub.publish('{$this->formatFieldEvent($field, 'select')}', data);
 				});
 EOT;
@@ -381,13 +381,13 @@ EOT;
 				
 					$("input[name='{$field->column()}[]']").on('change', function(e){
 						 var files = $(this).prop('files');
-						 ({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'change')}', files));
+						 ({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'change')}', files));
 						 FieldHub.publish('{$this->formatFieldEvent($field, 'change')}', files);
 					});
 						
 					$("input[name='{$field->column()}[]']").on('filecleared', function(e){
 						var files = $(this).prop('files');
-						 ({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'filecleared')}', files));
+						 ({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'filecleared')}', files));
 						 FieldHub.publish('{$this->formatFieldEvent($field, 'filecleared')}', files);
 					});		
 				
@@ -400,13 +400,13 @@ EOT;
 				
 				$("input[name='{$field->column()}[]']").on('change', function(e){
 						 var files = $(this).prop('files');
-						 ({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'change')}', files));
+						 ({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'change')}', files));
 						 FieldHub.publish('{$this->formatFieldEvent($field, 'change')}', files);
 				});
 						
 				$("input[name='{$field->column()}[]']").on('filecleared', function(e){
 						var files = $(this).prop('files');
-						({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'filecleared')}', files));
+						({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'filecleared')}', files));
 						FieldHub.publish('{$this->formatFieldEvent($field, 'filecleared')}', files);
 				});		
 						
@@ -438,13 +438,13 @@ EOT;
 				
 				$("input[name='{$field->column()}']").on('change', function(e){
 						var text = $(this).val();
-						({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'change')}', text));
+						({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'change')}', text));
 						FieldHub.publish('{$this->formatFieldEvent($field, 'change')}',text);		
 				});
 				
 				$("input[name='{$field->column()}']").on('input', function(e){
 						var text = $(this).val();
-						({$debug}) && console.log(FieldHub.triggerlog('', '{$this->formatFieldEvent($field, 'input')}', text));
+						({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'input')}', text));
 						FieldHub.publish('{$this->formatFieldEvent($field, 'input')}',text);		
 				});
 				

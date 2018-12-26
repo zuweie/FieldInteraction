@@ -12,6 +12,7 @@ class ScriptInjecter extends Field{
 	
 	public function __construct($column, $scripts) {
 		$this->scripts = $scripts;
+		//$this->form->ignore($this->column);
 	}
 	
 	public function render () {
