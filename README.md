@@ -96,7 +96,7 @@
 Text|是|input / change|-
 Select|是|select / unselect | -
 Radio|是|checked|-
-checkbox|是|ifChecked / ifUnchecked| -
+checkbox|是|checked / unchecked| -
 Textarea|是|input / change | -
 Url|是|input / change|-
 Color| 是 | changeColor| -
