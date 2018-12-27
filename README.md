@@ -90,6 +90,11 @@
 
 控件类|能否触发|触发事件|说明
 --|:--|:--|:--
-Text|是|input / change|无
-
-
+Text|是|input / change|-
+Select|是|select / unselect | -
+Radio|是|checked|-
+checkbox|是|ifChecked / ifUnchecked| -
+Textarea|是|input / change | -
+Url|是|input/change|-
+Color| 是 | changeColor| -
+Email | 是 | input / change | -
