@@ -95,6 +95,34 @@ Select|是|select / unselect | -
 Radio|是|checked|-
 checkbox|是|ifChecked / ifUnchecked| -
 Textarea|是|input / change | -
-Url|是|input/change|-
+Url|是|input / change|-
 Color| 是 | changeColor| -
 Email | 是 | input / change | -
+Mobile | 是 | input / change | -
+File | 是 | change / fileclear | -
+Image | 是 | change / fileclear | -
+Date | 否 | - | -
+Number | 否 | - | -
+Currency | 是 | change / input | -
+SwitchField | 是 | switchchange | -
+Tags | 是 | select / unselect | -
+Icon | 否 | - | - 
+MultipleFile | 是 | change / fileclear | -
+MultipleImage | 是 | change / fileclear | -
+ListBox | 否 | - | -
+Rate | 是 | change / input | -
+Password | 否 | - | -
+Datetime | 否 | - | -
+Time | 否 | - | -
+Year | 否 | - | -
+Month | 否 | - | -
+DateRange | 否 | - | -
+DateTimeRange | 否 | - | -
+TimeRange | 否 | - | -
+
+
+
+
+
+
+
