@@ -38,68 +38,67 @@ class UserController extends Controller
         $form->textarea('column4', 'textarea');
         
         // 添加事件触发器
-       $trigger_script = $this->createTriggerScript($form);
+        $trigger_script = $this->createTriggerScript($form);
        
        // 添加事件响应事件
-       $subscriber_script = $this->createSubscriberScript($form, function($builder) {
+        $subscriber_script = $this->createSubscriberScript($form, function($builder) {
        	   // 监听column1的select事件
-       		$builder->subscribe('column1', 'select', function($event) {
-       			return <<<EOT
-       			
-       			function (data) {
-       					$('.column4').val('你选择了'+data.text);
-       			}
+         $builder->subscribe('column1', 'select', function($event) {
+            return <<<EOT
+       
+                function (data) {
+                     $('.column4').val('你选择了'+data.text);
+                }
 EOT;
-       		});
-       		
+           });
+       
        		// 监听column2的checked事件
-       		$builder->subscribe('column2', 'checked', function ($event) {
-       			return <<< EOT
-       			
-       			function (data) {
-       					if (data == '1'){
-       						$('.column4').attr('disabled', false);
-       					}else{
-       						$('.column4').attr('disabled', true);
-       					}
-       			}
+           $builder->subscribe('column2', 'checked', function ($event) {
+                return <<< EOT
+      
+                    function (data) {
+                        if (data == '1'){
+                             $('.column4').attr('disabled', false);
+                        }else{
+                             $('.column4').attr('disabled', true);
+                        }
+                    }
+      
+EOT;
+            });
+       
+           // 监听column3的checked事件
+           $builder->subscribe('column3', 'checked' , function ($event) {
+             return <<< EOT
+            
+                function (data) {
+                       $('.column4').val('你选择了 ' + data);
+                 }
+       
+       
+EOT;
+             });
+       
+           // 监听column3的unchecked事件
+           $builder->subscribe('column3', 'unchecked', function ($event) {
+           return <<< EOT
+       
+            function (data) {
+                    $('.column4').val('你选择了 ' + data);
+             }
+       
+EOT;
+            });
+            // 监听column5的input事件
+            $builder->subscribe('column5', 'input', function ($event) {
+                return <<< EOT
+           
+                    function (data) {
+                      $('.column4').val(data);
+                    }
        			
 EOT;
-       		});
-       		
-       		// 监听column3的checked事件
-       		$builder->subscribe('column3', 'checked' , function ($event) {
-       			return <<< EOT
-       			
-       			function (data) {
-       					$('.column4').val('你选择了 ' + data);
-       			}
-       					
-       			
-EOT;
-       		});
-       		
-       		// 监听column3的unchecked事件
-       		$builder->subscribe('column3', 'unchecked', function ($event) {
-       			return <<< EOT
-       			
-       			function (data) {
-       					$('.column4').val('你选择了 ' + data);
-       			}
-       			
-EOT;
-       		});
-       		// 监听column5的input事件
-       		$builder->subscribe('column5', 'input', function ($event) {
-       			return <<< EOT
-       			
-       			function (data) {
-       					$('.column4').val(data);
-       			}
-       			
-EOT;
-       		});
-       		
+             });
        });
        
        /* 将 trigger_script 和 subscriber_script 注入 form 中 */
