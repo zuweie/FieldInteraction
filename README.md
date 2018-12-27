@@ -58,21 +58,24 @@
         ...
         
         // 在定义完控件后。。。
-        // new 一个触发事件的Script对象。
+        // 弄一个触发事件的Script对象。
         $triggerScript = $this->createTriggerScript($form);
         
-        // new -个接收并处理事件的Script对象。
-        $subscribeScript = $this->createSubscribeScript($form, function($builder){
+        // 弄-个接收并处理事件的Script对象。
+        $subscribeScript = $this->createSubscriberScript($form, function($builder){
            // 添加事件响应函数
            $builder->subscribe('column_listen_to', 'event_will_triggered', function($event){
-           // 这里填写处理事件的javascript函数。
+           
+           // 这里填写处理事件的javascript脚本，注意：一定要返回一个完整的 javascript function ，否则报错！！！！
                return <<< EOT
                
+               // function中的参数data，是事件自带数据，方便做逻辑处理！data会因为事件不同而类型不同，具体可以在chrome中的console中查看。
                function(data){
                   console.log ('catch an event -> {$event}');
                   // 某个控件对于某个事件做出处理， 
+                  
                   $('xxx').doSomething();
-                  .... 事件处理 ....
+                  //.... 事件处理 ....
                }
                
      EOT;
@@ -119,6 +122,21 @@ Month | 否 | - | -
 DateRange | 否 | - | -
 DateTimeRange | 否 | - | -
 TimeRange | 否 | - | -
+
+- createSubscriberScript 接收事件并处理事件：
+*TriggerScript* 是为了控件能触发事件，那么 *SubscriberScript* 就是为了监听和处理事件。监听和处理事件需要在createSubscriberScript函数中的$builder对象添加。下面简要说明如何在$builder添加监听和处理。
+   - $builder->subscribe(arg1, arg2, func);
+   - arg1 : 需要关注的控件的名称。
+   - arg2 : 需要监听的事件，每个控件有一个或者以上的事件，具体查看TriggerScript给出的表格。
+   - func : 事件监听后的函数，必须返回一个完整的javascript的function，否则会出现语法错误。
+  
+
+
+
+
+
+
+
 
 
 
