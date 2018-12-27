@@ -2,10 +2,12 @@
  ### 介绍
  - laravel是一个很好的框架，使用起来很方便。而其中的**laravel-admin**更是方便我们对一个完整的Web平台搭建。然后laravel-admin有个不足，让本人使用十分不爽，这个是laravel-admin各个**Field**之间没有互动的功能，或者说是没有互动的接口。这让本人想实现一些控件间互动的逻辑的时候，都非得重新自定义一些控件组，让几个控件集合成一个新的控件来实现.
  - FieldInteraction 提供一个接口，用于注入javascript，使得各个Field之间有互动的可能。
+ 
  ### 演示 gif （如果没反应，请点击观看)
  ![FieldInteraction](http://cdn.qiniu.inetwon.com/field-Interaction.gif "演示，可能不太清晰")
  
  ### 演示的源码
+ [演示源码](https://github.com/zuweie/FieldInteraction/blob/master/example/UserController.php)
  
  ### 安装
  - composer require zuweie/field-interaction 
