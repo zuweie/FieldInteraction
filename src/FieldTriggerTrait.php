@@ -360,7 +360,7 @@ EOT;
 				$("select[name='{$field->column()}[]']").on('select2:unselect', function(e){
 					var data = e.params.data;
 					({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'select')}', data));
-    				FieldHub.publish('{$this->formatFieldEvent($field, 'select')}', data);
+    				FieldHub.publish('{$this->formatFieldEvent($field, 'unselect')}', data);
 				});
 EOT;
 			});
