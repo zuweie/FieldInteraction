@@ -7,15 +7,15 @@
     "authors": [
         {
             "name": "zuweie",
-            "email": "jojoe.wei@gmail.com"
+            "email": "51930505@qq.com"
         }
     ],
     "require": {
-    	"encore/laravel-admin": "^1.5"
+        "encore/laravel-admin": "^1.5"
     },
     "autoload": {
-    	"psr-4": {
-    		"Field\\Interaction\\":"src/"
-    	}
+        "psr-4": {
+            "Field\\Interaction\\":"src/"
+        }
     }
 }

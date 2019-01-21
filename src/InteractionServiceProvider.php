@@ -7,30 +7,27 @@ use Illuminate\Support\ServiceProvider;
 class InteractionServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap the application services.
-     *
-     * @return void
+     * {@inheritdoc}
      */
-	
-	
-    public function boot()
+    public function boot(Interaction $extension)
     {
-        //
-        if ($this->app->runningInConsole()) {
-        	
-        	$this->publishes([
-        			__DIR__.'/../resource/js/' => public_path('vendor/interaction'),
-        	], 'interaction');
+        if (! Interaction::boot()) {
+            return ;
         }
-    }
 
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
+        if ($views = $extension->views()) {
+            $this->loadViewsFrom($views, 'field-interaction');
+        }
+
+        if ($this->app->runningInConsole() && $assets = $extension->assets()) {
+            $this->publishes(
+                [$assets => public_path('vendor/laravel-admin-ext/field-interaction')],
+                'field-interaction'
+            );
+        }
+
+        $this->app->booted(function () {
+            Interaction::routes(__DIR__.'/../routes/web.php');
+        });
     }
 }
