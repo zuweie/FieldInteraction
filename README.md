@@ -4,12 +4,19 @@
  
  - FieldInteraction 提供一个接口，用于注入javascript，使得各个Field之间有互动的可能。
  
+ ### Encore\Admin\Form 与 Encore\Admin\Widgets\Form
+ - laravel-admin中有两个Form类，Encore\Admin\Form与Encore\Admin\Widgets\Form。
+ 
+ - 两者区别在于Encore\Admin\Form自带model，Encore\Admin\Widgets\Form不带model。本项目并不关系其带不带model，只关心Form里面Fields。
+ 
+ - Encore\Admin\Form有公开接口可以获取Form中的Fields，而Encore\Admin\Widgets\Form则没有。于是对于不同的Form，需要有不同的script生成方式。
+ 
  ### 演示 gif （如果没反应，请点击观看)
  ![FieldInteraction](http://cdn.qiniu.inetwon.com/field-Interaction.gif "演示，可能不太清晰")
  
  ### 演示的源码
- - [EncoreForm演示源码](https://github.com/zuweie/FieldInteraction/blob/master/example/Encore_form.php)
- - [WidgetForm演示源码](https://github.com/zuweie/FieldInteraction/blob/master/example/Widgets_form.php)
+ - [Encore\Admin\Form演示源码](https://github.com/zuweie/FieldInteraction/blob/master/example/Encore_form.php)
+ - [Encore\Admin\Widgets\Form演示源码](https://github.com/zuweie/FieldInteraction/blob/master/example/Widgets_form.php)
  
  ### 安装
  - composer require zuweie/field-interaction 
