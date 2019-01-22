@@ -8,7 +8,7 @@
  ![FieldInteraction](http://cdn.qiniu.inetwon.com/field-Interaction.gif "演示，可能不太清晰")
  
  ### 演示的源码
- [演示源码](https://github.com/zuweie/FieldInteraction/blob/master/example/UserController.php)
+ [演示源码](https://github.com/zuweie/FieldInteraction/blob/master/example/Encore_form.php)
  
  ### 安装
  - composer require zuweie/field-interaction 
