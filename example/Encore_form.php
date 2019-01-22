@@ -4,21 +4,19 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 
 use Encore\Admin\Controllers\HasResourceActions;
-use Encore\Admin\Form;
+use Encore\Admin\Form as ModelForm;
 
 use Field\Interaction\FieldTriggerTrait;
 use Field\Interaction\FieldSubscriberTrait;
 use App\User;
 
-/** 此代码只做演示，不能运行**/
+/** 此代码只做展示，不能运行**/
 
 class UserController extends Controller
 {
-	// 使用FieldTriggerTrait，和FieldSubscriberTrait
+    // 使用FieldTriggerTrait，和FieldSubscriberTrait
     use HasResourceActions, FieldTriggerTrait, FieldSubscriberTrait;
 
-
-   
     /**
      * Make a form builder.
      *
@@ -26,7 +24,7 @@ class UserController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new User());
+        $form = new ModelForm(new User());
         
         /*定义控件*/
         $form->select('column1', 'select')->options(['1'=>'1', '2'=>'2']);
@@ -42,7 +40,7 @@ class UserController extends Controller
        
        // 添加事件响应事件
         $subscriber_script = $this->createSubscriberScript($form, function($builder) {
-       	   // 监听column1的select事件
+              // 监听column1的select事件
          $builder->subscribe('column1', 'select', function($event) {
             return <<<EOT
        
@@ -52,7 +50,7 @@ class UserController extends Controller
 EOT;
            });
        
-       		// 监听column2的checked事件
+               // 监听column2的checked事件
            $builder->subscribe('column2', 'checked', function ($event) {
                 return <<< EOT
       
@@ -96,7 +94,7 @@ EOT;
                     function (data) {
                       $('.column4').val(data);
                     }
-       			
+                   
 EOT;
              });
        });

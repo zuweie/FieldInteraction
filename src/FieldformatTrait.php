@@ -19,7 +19,6 @@ trait FieldformatTrait {
         $f_event = $this->formatFieldId($field).':'.$event;
         return $f_event;
     }
-    
-    
+        
 }
 ?>

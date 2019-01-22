@@ -2,25 +2,31 @@
 namespace Field\Interaction;
 
 use Encore\Admin\Form;
+
 use Field\Interaction\Base\BaseScript;
 use Field\Interaction\Base\BaseScriptBuilder;
 use Field\Interaction\FieldformatTrait;
+use Field\Interaction\Base\BaseFieldSet;
 
+/**
+ * 这个Script使用Admin\Form 
+ * @author zuweie
+ *
+ */
 class TriggerScript extends BaseScript {
     
     use FieldformatTrait;
     
-    function __construct(Form $form, BaseScriptBuilder $scriptBuilder) {
+    function __construct(BaseFieldSet $fieldset, BaseScriptBuilder $scriptBuilder) {
         parent::__construct($scriptBuilder);
-        $this->form = $form;
+        $this->fieldset = $fieldset;
     }
     
     public function genScript () {
         
         $this->script_builder->addScriptTo($this);
         
-        $builder = $this->form->builder();
-        $fields = $builder->fields();
+        $fields = $this->fieldset->getFields();
         
         foreach ($fields as $f) {
             $f_class = $this->formatFieldClazz(get_class($f));
@@ -34,5 +40,5 @@ class TriggerScript extends BaseScript {
     }
     
     protected $inject_script = [];
-    protected $form;
+    protected $fieldset;
 }

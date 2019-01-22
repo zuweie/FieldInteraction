@@ -1,6 +1,7 @@
 <?php 
 namespace Field\Interaction;
 use Field\Interaction\FieldformatTrait;
+use Encode\Admin\Form;
 use Encore\Admin\Form\Field;
 use Encore\Admin\Form\Field\Text;
 use Encore\Admin\Form\Field\Select;
@@ -41,10 +42,17 @@ trait FieldTriggerTrait {
     
     use FieldformatTrait;
     
-    public  function createTriggerScript ($form,  $scriptbuilder=null, $debug=true ) {
-        return new TriggerScript($form, $scriptbuilder? $scriptbuilder : $this->createTriggerScriptBuilder($debug));
-    }
+    public  function createTriggerScript ($fieldsource,  $scriptbuilder=null ) {
         
+        $debug = env('APP_DEBUG', true);
+        
+        if ($fieldsource instanceof \Encore\Admin\Form) {
+            return new TriggerScript(new FormFields($fieldsource), $scriptbuilder? $scriptbuilder : $this->createTriggerScriptBuilder($debug));
+        }else if (is_array($fieldsource)) {
+            return new TriggerScript(new ArrayFields($fieldsource), $scriptbuilder?$scriptbuilder : $this->createTriggerScriptBuilder($debug));
+        }
+    }
+    
     public  function createTriggerScriptBuilder ($debug=false) {
         $triggerBuilder = new TriggerScriptBuilder();
         $debug = $debug?'true' : 'false';

@@ -8,10 +8,12 @@ class SubscribeScriptBuilder implements BaseScriptBuilder {
     use FieldformatTrait;
     public function addScriptTo(BaseScript $container) {
         
-        $form = $container->getForm();
+        $fieldset = $container->getFieldset();
         
         foreach ($this->scripts as $s) {
-            $field = $form->builder()->field($s[0]);
+            
+            $field = $fieldset->getField($s[0]);
+            
             if (!empty($field)) {
                 $key = $this->formatFieldEvent($field, $s[1]);
                 $container->putScript($key, $s[2]);
