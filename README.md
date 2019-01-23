@@ -36,8 +36,6 @@
  ```
    php artisan vedor:publish --provider="Field\Interaction\InteractionServiceProvider"
  ```
-在public/vendor/interaction/发现有FieldHub.js即安装成功。若不成功，可手动复制vendor/zuweie/field-interaction/resource/js/FieldHub.js 到public/vendor/interaction/下。
- 
  ### 用法
  - 在app/Admin/bootstrap.php文件中注册 **scriptinjecter**
  ```
