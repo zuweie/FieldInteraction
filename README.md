@@ -7,9 +7,9 @@
  ### laravel-admin中两个Form
  - laravel-admin中有两个Form类，Encore\Admin\Form与Encore\Admin\Widgets\Form。
  
- - 两者区别在于Encore\Admin\Form自带model，Encore\Admin\Widgets\Form不带model。本项目并不关系其带不带model，只关心Form里面Fields。
+ - 两者区别在于Encore\Admin\Form自带model，Encore\Admin\Widgets\Form不带model。本项目并不关心其带不带model，只关心Form里面Fields。
  
- - Encore\Admin\Form有公开接口可以获取Form中的Fields，而Encore\Admin\Widgets\Form则没有。于是对于不同的Form，需要有不同的script生成方式。
+ - Encore\Admin\Form有公开接口可以获取Form中的Fields，而Encore\Admin\Widgets\Form则没有。于是对于不同的Form，需要有不同调用方式。
  
  ### 演示 gif （如果没反应，请点击观看)
  ![FieldInteraction](http://cdn.qiniu.inetwon.com/field-Interaction.gif "演示，可能不太清晰")
