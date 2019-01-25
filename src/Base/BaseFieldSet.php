@@ -3,6 +3,7 @@ namespace Field\Interaction\Base;
 
 use Illuminate\Support\Collection;
 use Encore\Admin\Form\Field;
+
 abstract  class BaseFieldSet {
     
       public abstract function getFields() : Collection;
