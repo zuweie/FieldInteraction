@@ -17,5 +17,12 @@
         "psr-4": {
             "Field\\Interaction\\":"src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Field\\Interaction\\InteractionServiceProvider"
+            ]
+        }
     }
 }
