@@ -20,18 +20,6 @@
  
  ### 安装
  - composer require zuweie/field-interaction 
- - 在laravel中的 config/app 的provider加入 Field\Interaction\InteractionServiceProvider 如下：
- ```
-   'providers' => [
-      //...
-      App\Providers\AppServiceProvider::class,
-      App\Providers\AuthServiceProvider::class，
-      App\Providers\EventServiceProvider::class,
-      App\Providers\RouteServiceProvider::class,
-      //...
-      Field\Interaction\InteractionServiceProvider::class,
-    ]
- ```
  - 执行以下命令：
  ```
    php artisan vedor:publish --provider="Field\Interaction\InteractionServiceProvider"
