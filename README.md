@@ -194,8 +194,8 @@ TimeRange | 否 | - | -
   
   
 ### 后记
-- 由于时间关系，本项目只在chrome浏览器上做过测试，请慎用～～～～
-- 有哪位大神可以告诉我：怎么可以在发布laravel-admin的Package的时候直接使用命令php artisan vendor:publish --provider='xxxx\xxxx\XXXServiceProvider'就可以完成文件的copy，而不需要在config/app.php中注册xxx\xxx\XXXServiceProvider。有知道的请在Issues中开个贴，谢谢～～～
+- 因为时间关系，本项目只在chrome浏览器上做过测试，请慎用～～～～
+- 此项目基于本人的一些简单项目需求，所以实现的功能不多，有特别需求的可以在iusses开帖，你们的需求，是改进的动力～～～
 
 
 
