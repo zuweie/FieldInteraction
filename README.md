@@ -22,7 +22,7 @@
  - composer require zuweie/field-interaction 
  - 执行以下命令：
  ```
-   php artisan vedor:publish --provider="Field\Interaction\InteractionServiceProvider"
+   php artisan vendor:publish --provider="Field\Interaction\InteractionServiceProvider"
  ```
  ### 用法
  - 在app/Admin/bootstrap.php文件中注册 **scriptinjecter**
