@@ -20,7 +20,8 @@ class ScriptInjecter extends Field{
             $script->genScript();
             $script_output .= $script;
         }
-        return Admin::script($script_output);
+        Admin::script($script_output);
+        return '';
     }
     
     protected $scripts;
