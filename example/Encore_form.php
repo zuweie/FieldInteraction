@@ -10,7 +10,7 @@ use Field\Interaction\FieldTriggerTrait;
 use Field\Interaction\FieldSubscriberTrait;
 use App\User;
 
-/** 此代码只做展示，不能运行**/
+/** 此代码只做展示，不能运行 **/
 
 class UserController extends Controller
 {
@@ -35,10 +35,10 @@ class UserController extends Controller
         $form->html('以下是响应事件的控件');
         $form->textarea('column4', 'textarea');
         
-        // 添加事件触发器
+        /* 添加事件触发器 */
         $trigger_script = $this->createTriggerScript($form);
        
-       // 添加事件响应事件
+       /* 添加事件响应事件 */
         $subscriber_script = $this->createSubscriberScript($form, function($builder) {
               // 监听column1的select事件
          $builder->subscribe('column1', 'select', function($event) {
@@ -50,7 +50,7 @@ class UserController extends Controller
 EOT;
            });
        
-               // 监听column2的checked事件
+               /* 监听column2的checked事件 */
            $builder->subscribe('column2', 'checked', function ($event) {
                 return <<< EOT
       
@@ -65,7 +65,7 @@ EOT;
 EOT;
             });
        
-           // 监听column3的checked事件
+           /* 监听column3的checked事件 */
            $builder->subscribe('column3', 'checked' , function ($event) {
              return <<< EOT
             
@@ -77,7 +77,7 @@ EOT;
 EOT;
              });
        
-           // 监听column3的unchecked事件
+           /* 监听column3的unchecked事件 */
            $builder->subscribe('column3', 'unchecked', function ($event) {
            return <<< EOT
        
@@ -87,7 +87,7 @@ EOT;
        
 EOT;
             });
-            // 监听column5的input事件
+            /* 监听column5的input事件 */
             $builder->subscribe('column5', 'input', function ($event) {
                 return <<< EOT
            

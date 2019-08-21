@@ -24,6 +24,12 @@
  ```
    php artisan vendor:publish --provider="Field\Interaction\InteractionServiceProvider"
  ```
+ - 若执行了以上命令却没有发现有任何的JS文件拷贝，则需要手动拷贝JS文件到指定位置：
+ 
+ /vendor/zuweie/field-interaction/resource/assets/js/FieldHub.js ==> /public/vendor/laravel-admin-ext/field-interaction/js/FieldHub.js
+
+至于为什么有时候不会发生copy。这个我也不晓得。咱也不敢说，咱也不敢问，有知道的老铁，请私信一下～～
+
  ### 用法
  - 在app/Admin/bootstrap.php文件中注册 **scriptinjecter**
  ```
