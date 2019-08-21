@@ -23,7 +23,7 @@ abstract class BaseScript {
     }
     
     public function getBuilder () {
-        return $this->$scriptBuilder;
+        return $this->scriptBuilder;
     }
     
     public function putScript ($key, $script) {
