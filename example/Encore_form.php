@@ -100,7 +100,7 @@ EOT;
        });
        
        /* 将 trigger_script 和 subscriber_script 注入 form 中 */
-        $form->scriptinjecter('name_no_care', $trigger_script, $subscriber_script);
+        $form->scriptinjecter('anyname_but_not_null', $trigger_script, $subscriber_script);
         
         return $form;
     }
