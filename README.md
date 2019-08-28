@@ -140,7 +140,8 @@
         });
         
         // 最后把 $triggerScript 和 $subscribeScript 注入到Form中去。
-        $form->scriptinjecter('name_no_care', $triggerScript, $subscribeScript);
+        // scriptinjecter 第一个参数可以为任何字符，但不能为空！！！！
+        $form->scriptinjecter('anyname_but_no_empty', $triggerScript, $subscribeScript);
         
     }
 ```
