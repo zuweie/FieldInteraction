@@ -92,7 +92,7 @@
         });
         
         // 最后把 $triggerScript 和 $subscribeScript 注入到Form中去。
-        $form->scriptinjecter('name_no_care', $triggerScript, $subscribeScript);
+        $form->scriptinjecter('any_name_but_no_empty', $triggerScript, $subscribeScript);
         
     }
 ```
