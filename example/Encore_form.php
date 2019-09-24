@@ -15,7 +15,7 @@ use App\User;
 class UserController extends Controller
 {
     // 使用FieldTriggerTrait，和FieldSubscriberTrait
-    use HasResourceActions, FieldTriggerTrait, FieldSubscriberTrait;
+    use ..., FieldTriggerTrait, FieldSubscriberTrait;
 
     /**
      * Make a form builder.
