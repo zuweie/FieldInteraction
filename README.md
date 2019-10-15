@@ -1,6 +1,6 @@
  # FieldInteraction
  ### 项目来由
- - laravel是一个很好的框架，使用起来很方便。而其中的**laravel-admin**更是方便我们对一个完整的Web平台搭建。然后laravel-admin有个不足之处，就是laravel-admin各个**Field**之间没有互动的功能，或者说是没有互动的接口。这让我想实现一些控件间互动的逻辑的时候，都非得重新自定义一个控件组，让几个控件组合成一个新的控件来实现。
+ - laravel是一个很好的框架，使用起来很方便。而其中的**laravel-admin**更是方便我们对一个完整的Web平台搭建。但laravel-admin各个**Field**之间没有互动的功能，或者说是没有互动的接口。这让我想实现一些控件间互动的逻辑的时候，都非得重新自定义一个控件组，让几个控件组合成一个新的控件来实现。
  
  - FieldInteraction 提供一个接口，用于注入javascript，使得各个Field之间有互动的可能。
  
