@@ -147,6 +147,7 @@
     }
 ```
 - **注意**在form使用tab的情况下，脚本注入需要特殊处理。
+
 在form使用了tab函数的情况下，需要把$form->scriptinjecter(...)这个函数写在任意一个tab函数中，代码如下：
 ```
  protected function form() { 
