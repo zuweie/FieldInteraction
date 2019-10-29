@@ -146,6 +146,53 @@
         
     }
 ```
+- **注意**在form使用tab的情况下，脚本注入需要特殊处理。
+在form使用了tab函数的情况下，需要把$form->scriptinjecter(...)这个函数写在任意一个tab函数中，代码如下：
+```
+ protected function form() { 
+ 
+        // UserController form 函数中
+        $form = new Form(new User());
+        
+        // 创建触发脚本
+        $trigger = $this->createTriggerScript($form);
+        
+        // 创建监听和响应的脚本。
+        $subscribe = $this->createSubscriberScript($form, function($builder){
+            $builder->subscribe('username', 'input', function($event){
+                return <<< EOT
+                
+                function (data) {
+                       console.log(data);
+                }
+EOT;
+            });
+        });
+        
+        // 使用了tab的form
+        
+         $form->tab('Basic info', function ($form) {
+        
+            $form->text('username');
+            $form->email('email');
+            
+        })->tab('Profile', function ($form)  {
+        
+            $form->image('avatar');
+            $form->text('address');
+            $form->mobile('phone');
+            
+        })->tab('Jobs', function ($form) use ($trigger, $subscribe)  {
+                $form->text('company');
+                $form->date('start_date');
+                $form->date('end_date');
+                
+                /*** scriptinjecter 函数放在任意一个tab函数中，这里示例代码放在了最后一个tab，也可以放任意前两个tab函数，任君选择 ***/
+                /*** scriptinjecter 函数只需在任意一个tab中调用一次即可，不能重复调用！***/
+                $form->scriptinjecter('xxx', $trigger, $subscribe);
+        });
+}
+```
 ### 说明
 - $createTriggerScript 返回一个针对原来laravel-admin已有的控件的事件触发脚本。但是很遗憾有一些控件，我是怎么也找不到他们的触发事件，以下给出laravel-admin中的支持触发事件的控件，以及他们的触发的事件
 
