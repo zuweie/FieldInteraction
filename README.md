@@ -1,6 +1,6 @@
  # FieldInteraction
  ### 项目来由
- - laravel是一个很好的框架，使用起来很方便。而其中的**laravel-admin**更是方便我们对一个完整的Web平台搭建。然后laravel-admin有个不足之处，就是laravel-admin各个**Field**之间没有互动的功能，或者说是没有互动的接口。这让我想实现一些控件间互动的逻辑的时候，都非得重新自定义一个控件组，让几个控件组合成一个新的控件来实现。
+ - laravel是一个很好的框架，使用起来很方便。而其中的**laravel-admin**更是方便我们对一个完整的Web平台搭建。但laravel-admin各个**Field**之间没有互动的功能，或者说是没有互动的接口。这让我想实现一些控件间互动的逻辑的时候，都非得重新自定义一个控件组，让几个控件组合成一个新的控件来实现。
  
  - FieldInteraction 提供一个接口，用于注入javascript，使得各个Field之间有互动的可能。
  
@@ -92,7 +92,8 @@
         });
         
         // 最后把 $triggerScript 和 $subscribeScript 注入到Form中去。
-        $form->scriptinjecter('name_no_care', $triggerScript, $subscribeScript);
+        // scriptinjecter 第一个参数可以为任何字符，但不能为空！！！！
+        $form->scriptinjecter('any_name_but_no_empty', $triggerScript, $subscribeScript);
         
     }
 ```
@@ -140,9 +141,58 @@
         });
         
         // 最后把 $triggerScript 和 $subscribeScript 注入到Form中去。
-        $form->scriptinjecter('name_no_care', $triggerScript, $subscribeScript);
+        // scriptinjecter 第一个参数可以为任何字符，但不能为空！！！！
+        $form->scriptinjecter('anyname_but_no_empty', $triggerScript, $subscribeScript);
         
     }
+```
+- **注意**在form使用tab的情况下，脚本注入需要特殊处理。
+
+在form使用了tab函数的情况下，需要把$form->scriptinjecter(...)这个函数写在任意一个tab函数中，代码如下：
+```
+ protected function form() { 
+ 
+        // UserController form 函数中
+        $form = new Form(new User());
+        
+        // 创建触发脚本
+        $trigger = $this->createTriggerScript($form);
+        
+        // 创建监听和响应的脚本。
+        $subscribe = $this->createSubscriberScript($form, function($builder){
+            $builder->subscribe('username', 'input', function($event){
+                return <<< EOT
+                
+                function (data) {
+                       console.log(data);
+                }
+EOT;
+            });
+        });
+        
+        // 使用了tab的form
+        
+         $form->tab('Basic info', function ($form) {
+        
+            $form->text('username');
+            $form->email('email');
+            
+        })->tab('Profile', function ($form)  {
+        
+            $form->image('avatar');
+            $form->text('address');
+            $form->mobile('phone');
+            
+        })->tab('Jobs', function ($form) use ($trigger, $subscribe)  {
+                $form->text('company');
+                $form->date('start_date');
+                $form->date('end_date');
+                
+                /*** scriptinjecter 函数放在任意一个tab函数中，这里示例代码放在了最后一个tab，也可以放任意前两个tab函数，任君选择 ***/
+                /*** scriptinjecter 函数只需在任意一个tab中调用一次即可，不能重复调用！***/
+                $form->scriptinjecter('xxx', $trigger, $subscribe);
+        });
+}
 ```
 ### 说明
 - $createTriggerScript 返回一个针对原来laravel-admin已有的控件的事件触发脚本。但是很遗憾有一些控件，我是怎么也找不到他们的触发事件，以下给出laravel-admin中的支持触发事件的控件，以及他们的触发的事件
@@ -161,7 +211,7 @@ Mobile | 是 | input / change | -
 File | 是 | change / fileclear | -
 Image | 是 | change / fileclear | -
 Date | 否 | - | -
-Number | 否 | - | -
+Number | 是 | number_change(v.1.0.9未上线) | -
 Currency | 是 | change / input | -
 SwitchField | 是 | switchchange | -
 Tags | 是 | select / unselect | -
