@@ -211,7 +211,7 @@ Mobile | 是 | input / change | -
 File | 是 | change / fileclear | -
 Image | 是 | change / fileclear | -
 Date | 否 | - | -
-Number | 是 | number_change(v.1.0.9未上线) | -
+Number | 是 | number_change | -
 Currency | 是 | change / input | -
 SwitchField | 是 | switchchange | -
 Tags | 是 | select / unselect | -
