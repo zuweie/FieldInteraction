@@ -316,6 +316,7 @@ EOT;
             // 官网 https://github.com/wpic/bootstrap-number-input
             $triggerBuilder->addTrigger(Number::class, function(Field $field) use ($debug) {
                 return <<< EOT
+                // 按减少键触发
                 var reduce = $("input[name='{$field->column()}']").prev().children('button');
                 reduce.click(function(){
                     var number = $("input[name='{$field->column()}']").val();
@@ -323,9 +324,17 @@ EOT;
                     FieldHub.publish('{$this->formatFieldEvent($field, 'number_change')}', number);
                 });
                 //({$debug}) && console.log(FieldHub.triggerlog('{$this->formatFieldClazz(Number::class)} no support!', '', '')); 
+                
+                // 按增加键触发
                 var increase = $("input[name='{$field->column()}']").next().children('button');
                 increase.click(function() {
                          var number = $("input[name='{$field->column()}']").val();
+                        ({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'number_change')}', number)); 
+                        FieldHub.publish('{$this->formatFieldEvent($field, 'number_change')}', number);
+                });
+                 // 输入框直接输入触发
+                 $("input[name='{$field->column()}']").on('input', function(e){
+                         var number = $(this).val();
                         ({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'number_change')}', number)); 
                         FieldHub.publish('{$this->formatFieldEvent($field, 'number_change')}', number);
                 });
@@ -380,6 +389,7 @@ EOT;
                     ({$debug}) && console.log(FieldHub.triggerlog('triggering an event', '{$this->formatFieldEvent($field, 'select')}', data));
                     FieldHub.publish('{$this->formatFieldEvent($field, 'unselect')}', data);
                 });
+                    
 EOT;
             });
             
